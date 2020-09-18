@@ -297,8 +297,37 @@ String playerName(String name) {
 }
 ```
 ## 级联运算符 (..)
-级联运算符 (..) 可以实现对同一个对像进行一系列的操作。 除了调用函数， 还可以访问同一对象上的字段属性。 这通常可以节省创建临时变量的步骤， 同时编写出更流畅的代码。
+级联运算符 (..) 可以实现对同一个对像进行一系列的操作。 除了调用函数， 还可以访问同一对象上的字段属性。 这通常可以节省创建临时变量的步骤， 同时编写出更流畅的代码。某些时候，我们希望对一个对象进行连续的操作，这个时候可以使用级联语法。
+```dart
+class Person {
+  String name;
 
+  void run() {
+    print("${name} is running");
+  }
+
+  void eat() {
+    print("${name} is eating");
+  }
+
+  void swim() {
+    print("${name} is swimming");
+  }
+}
+main(List<String> args) {
+  final p1 = Person();
+  p1.name = 'why';
+  p1.run();
+  p1.eat();
+  p1.swim();
+
+  final p2 = Person()
+              ..name = "why"
+              ..run()
+              ..eat()
+              ..swim();
+}
+```
 
 
 
