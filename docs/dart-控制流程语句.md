@@ -67,4 +67,40 @@ for (int i = 0; i < candidates.length; i++) {
 ```
 ###switch和case
  Dart 中 switch 语句使用 == 比较整数，字符串，或者编译时常量。 比较的对象必须都是同一个类的实例（并且不可以是子类）， 类必须没有对 == 重写。 枚举类型 可以用于 switch 语句。
-在case语句中，每个非空语句结尾必须要跟一个break语句。除了break以外，
+在case语句中，每个非空语句结尾必须要跟一个break语句。除了break以外，还有可以使用continue，throw，或者return。case 语句可以拥有局部变量， 这些局部变量只能在这个语句的作用域中可见。
+当没有case语句匹配时，执行default代码：
+```dart
+var command = 'OPEN';
+switch (command) {
+  case 'CLOSED':
+    executeClosed();
+    break;
+  case 'PENDING':
+    executePending();
+    break;
+  case 'APPROVED':
+    executeApproved();
+    break;
+  case 'DENIED':
+    executeDenied();
+    break;
+  case 'OPEN':
+    executeOpen();
+    break;
+  default:
+    executeUnknown();
+}
+```
+### assert
+如果assert语句中的布尔条件为false,那么正常的程序执行流程会被中断。
+```dart
+// 确认变量值不为空。
+assert(text != null);
+
+// 确认变量值小于100。
+assert(number < 100);
+
+// 确认 URL 是否是 https 类型。
+assert(urlString.startsWith('https'));
+```
+提示：assert语句只在开发环境中有效，在生产环境是无效的。Flutter中的assert只在debug模式下有效。
