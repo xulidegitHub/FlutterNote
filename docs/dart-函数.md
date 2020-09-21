@@ -102,4 +102,65 @@ getFunc() {
   return foo;
 }
 ```
-在很多语言中，函数并不能作为
+#### 匿名函数的使用
+大部分我们定义的函数都会有自己的名字，比如前面的foo,test函数等等。但是某些情况下，给函数命名太麻烦啦，我们可以使用没有名字的函数，这种函数可以称之为匿名函数。
+```dart
+main(List<String> args) {
+  // 1.定义数组
+  var movies = ['盗梦空间', '星际穿越', '少年派', '大话西游'];
+
+  // 2.使用forEach遍历: 有名字的函数
+  printElement(item) {
+    print(item);
+  }
+  movies.forEach(printElement);
+
+  // 3.使用forEach遍历: 匿名函数
+  movies.forEach((item) {
+    print(item);
+  });
+  movies.forEach((item) => print(item));
+}
+```
+#### 词法的作用域
+dart中的词法有自己明确的作用域范围，它是根据代码的结构({})来决定作用域范围的优先使用自己作用域中的变量，如果没有找到，则一层层向外查找。
+```dart
+var name = 'global';
+main(List<String> args) {
+  // var name = 'main';
+  void foo() {
+    // var name = 'foo';
+    print(name);
+  }
+  foo();
+}
+```
+#### 词法闭包
+闭包可以访问其词法范围内的变量，即使函数在其他地方被使用，也可以正常的访问。
+```dart
+main(List<String> args) {
+  makeAdder(num addBy) {
+    return (num i) {
+      return i + addBy;
+    };
+  }
+
+  var adder2 = makeAdder(2);
+  print(adder2(10)); // 12
+  print(adder2(6)); // 8
+
+  var adder5 = makeAdder(5);
+  print(adder5(10)); // 15
+  print(adder5(6)); // 11
+}
+```
+#### 返回值问题
+所有函数都返回一个值，如果没有指定返回值，则语句返回null;隐式附加到函数体。
+```dart
+main(List<String> args) {
+  print(foo()); // null
+}
+foo() {
+  print('foo function');
+}
+```
