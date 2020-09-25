@@ -94,7 +94,7 @@ String getNetworkData() {
   return "network data";
 }
 ```
-上面getNetworkData回阻塞main函数的执行。显然，上面的代码不是我们想要的执行效果，因为网络请求阻塞了main函数，那么意味着其后所有的代码都无法正常的继续执行。
+上面getNetworkData会阻塞main函数的执行。显然，上面的代码不是我们想要的执行效果，因为网络请求阻塞了main函数，那么意味着其后所有的代码都无法正常的继续执行。
 ### 异步的网络请求
 
 
