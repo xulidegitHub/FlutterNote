@@ -96,6 +96,28 @@ String getNetworkData() {
 ```
 上面getNetworkData会阻塞main函数的执行。显然，上面的代码不是我们想要的执行效果，因为网络请求阻塞了main函数，那么意味着其后所有的代码都无法正常的继续执行。
 ### 异步的网络请求
+我们来对我们上面的代码进行改进,代码如下:
+* 和刚才的代码唯一的区别在于我使用了Future对象来将耗时的操作放在了其中传入的函数中;
+* 稍后,我们会讲解他具体的一些API,我们就暂时知道我创建了一个Future实例即可;
+```dart
+import "dart:io";
+
+main(List<String> args) {
+  print("main function start");
+  print(getNetworkData());
+  print("main function end");
+}
+Future<String> getNetworkData() {
+  return Future<String>(() {
+    sleep(Duration(seconds: 3));
+    return "network data";
+  });
+}
+```
+我们来看一下代码的运行结果:
+* 这一次的代码顺序执行,没有出现任何的阻塞现象.
+* 和之前直接打印结果不同,这次我们打印了一个Future实例;
+* 我们将一个耗时操作隔离起来
 
 
 
