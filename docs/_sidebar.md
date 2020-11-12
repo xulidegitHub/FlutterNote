@@ -17,4 +17,6 @@
     * [泛型](/dart-泛型.md)
     * [库的导入](/dart-库的导入.md)
     * [Dart中的异步](/dart-异步.md)
-* [指南](/guide.md)
+* [Flutter指南](/guide.md)
+    * [数据共享-InheritedWidget](/flutter-数据共享InheritedWidget.md)
+    * [跨组件状态共享-Provider](/flutter-跨组件状态共享(Provider))
